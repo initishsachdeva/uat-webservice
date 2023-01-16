@@ -19,7 +19,7 @@ public class JiraIssuesRestController {
     @Autowired
     private JiraIssuesService jiraService;
 
-    @PostMapping(value = "/jiraIssues/upload/{sprintValue}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @PostMapping(value = "/jiraItems/upload/{sprintValue}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<?> fileUploadWithSprintValue(@PathVariable String sprintValue, @RequestParam("file") MultipartFile file) {
         if (file.isEmpty())
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("Error", "Please select an excel file"));
@@ -32,12 +32,12 @@ public class JiraIssuesRestController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("Error", "Please upload a excel file with .xlsx format"));
     }
 
-    @GetMapping(value = "/jiraIssues", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value = "/jiraItems", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<JiraIssues> getAllProducts() {
         return this.jiraService.getAllProducts();
     }
 
-    @GetMapping(value = "/jiraIssues/sprint", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value = "/jiraItems/sprint", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<JiraIssues> getBySprintNumber(@RequestParam("sprintValue") String sprintValue) {
         return this.jiraService.getBySprintValue(sprintValue);
     }

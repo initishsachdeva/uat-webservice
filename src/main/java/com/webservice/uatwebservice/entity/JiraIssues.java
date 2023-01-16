@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Data
 @NoArgsConstructor
@@ -13,10 +14,11 @@ import javax.persistence.Id;
 public class JiraIssues {
     private String type;
     @Id
-    private String key;
+    private String keyValue;
     private String summary;
     private String assignee;
     private String component;
+    @Lob
     private String description;
     private String sprintValue;
 }
