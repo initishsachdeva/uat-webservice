@@ -20,7 +20,7 @@ public class ExcelUtility {
         return false;
     }
 
-    //it converts excel to list of jira items
+    //it converts Excel file to list of jira items
     public static List<JiraIssues> convertExcelToList(InputStream is) {
         List<JiraIssues> list = new ArrayList<>();
         try {
@@ -44,7 +44,7 @@ public class ExcelUtility {
                             jiraItems.setType(cell.getStringCellValue());
                             break;
                         case 1:
-                            jiraItems.setKey(cell.getStringCellValue());
+                            jiraItems.setKeyValue(cell.getStringCellValue());
                             break;
                         case 2:
                             jiraItems.setSummary(cell.getStringCellValue());
