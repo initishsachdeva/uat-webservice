@@ -32,6 +32,17 @@ public class JiraIssuesRestController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("Error", "Please upload a excel file with .xlsx format"));
     }
 
+    @PostMapping(value = "/jiraItems/uploadJiraListFile", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<?> jiraListFileUpload(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty())
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of("Error", "Please select an excel file"));
+        if (ExcelUtility.checkExcelFormat(file)) {
+            this.jiraService.saveJiraFile(file);
+            return ResponseEntity.ok(Map.of("message", "Jira List file uploaded successfully and data items are stored in DB"));
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("Error", "Please upload a excel file with .xlsx format"));
+    }
+
     @GetMapping(value = "/jiraItems", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<JiraIssues> getAllProducts() {
         return this.jiraService.getAllProducts();

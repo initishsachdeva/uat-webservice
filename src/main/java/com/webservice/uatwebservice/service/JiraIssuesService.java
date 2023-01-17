@@ -23,9 +23,19 @@ public class JiraIssuesService {
             jiraIssues = ExcelUtility.convertExcelToList(file.getInputStream());
             if (sprintValue.length() > 0) {
                 for (JiraIssues jiraItems : jiraIssues) {
-                    jiraItems.setSprintValue(sprintValue);
+                    jiraItems.setSprint(sprintValue);
                 }
             }
+            this.jiraIssuesRepo.saveAll(jiraIssues);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveJiraFile(MultipartFile file) {
+        try {
+            List<JiraIssues> jiraIssues = new ArrayList<>();
+            jiraIssues = ExcelUtility.convertExcelToList(file.getInputStream());
             this.jiraIssuesRepo.saveAll(jiraIssues);
         } catch (IOException e) {
             e.printStackTrace();
