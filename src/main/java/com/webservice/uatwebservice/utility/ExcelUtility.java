@@ -41,22 +41,40 @@ public class ExcelUtility {
                     Cell cell = cells.next();
                     switch (cellId) {
                         case 0:
-                            jiraItems.setType(cell.getStringCellValue());
+                            jiraItems.setIssueType(cell.getStringCellValue());
                             break;
                         case 1:
-                            jiraItems.setKeyValue(cell.getStringCellValue());
+                            jiraItems.setIssueKey(cell.getStringCellValue());
                             break;
                         case 2:
                             jiraItems.setSummary(cell.getStringCellValue());
                             break;
                         case 3:
-                            jiraItems.setAssignee(cell.getStringCellValue());
+                            jiraItems.setComponents(cell.getStringCellValue());
                             break;
                         case 4:
-                            jiraItems.setComponent(cell.getStringCellValue());
+                            jiraItems.setDescription(cell.getStringCellValue());
                             break;
                         case 5:
-                            jiraItems.setDescription(cell.getStringCellValue());
+                            jiraItems.setFixVersion(cell.getStringCellValue());
+                            break;
+                        case 6:
+                            jiraItems.setPriority(cell.getStringCellValue());
+                            break;
+                        case 7:
+                            jiraItems.setSprint(cell.getStringCellValue());
+                            break;
+                        case 8:
+                            jiraItems.setStatus(cell.getStringCellValue());
+                            break;
+                        case 9:
+                            jiraItems.setAssignee(cell.getStringCellValue());
+                            break;
+                        case 10:
+                            jiraItems.setReporter(cell.getStringCellValue());
+                            break;
+                        case 11:
+                            jiraItems.setCreated(cell.getStringCellValue());
                             break;
                         default:
                             break;
